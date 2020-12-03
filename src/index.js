@@ -1,21 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import store from './app/store';
+import Todo from './todo';
+import store from './redux/store';
+import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+
+const theme = {
+  colors: {
+    title_primary: 'rgba(175, 47, 47, 0.15)',
+    text_primary: '#4d4d4d'
+  },
+  bg_colors: {
+    bg_primary: '#fff'
+  },
+  font_size: {
+    title: '6rem',
+    text: '1.4rem',
+    input: '1.5rem'
+  },
+};
 
 ReactDOM.render(
-  <React.StrictMode>
+  <ThemeProvider theme={ theme }>
     <Provider store={store}>
-      <App />
+      <Todo />
     </Provider>
-  </React.StrictMode>,
+  </ThemeProvider>,
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
